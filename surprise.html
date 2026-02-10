@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Sandhya ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        overflow: hidden;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ffd6e0, #ffeaea, #ffe4f0);
+        background-size: 200% 200%;
+        animation: bgMove 10s ease infinite alternate;
+    }
+
+    @keyframes bgMove {
+        0% { background-position: left; }
+        100% { background-position: right; }
+    }
+
+    .container {
+        text-align: center;
+        background: rgba(255,255,255,0.85);
+        padding: 30px 20px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        width: 90%;
+        max-width: 400px;
+        position: relative;
+        z-index: 2;
+    }
+
+    h1 {
+        color: #ff4d88;
+        font-size: 24px;
+        margin-bottom: 10px;
+        animation: fadeIn 0.6s ease;
+    }
+
+    p {
+        color: #555;
+        font-size: 15px;
+        margin-top: 0;
+        margin-bottom: 20px;
+        animation: fadeIn 0.8s ease;
+    }
+
+    button {
+        padding: 12px 20px;
+        margin: 10px;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .yes {
+        background: #ff4d88;
+        color: white;
+    }
+
+    .no {
+        background: #ddd;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Floating hearts */
+    .heart {
+        position: absolute;
+        bottom: -20px;
+        animation: floatUp 6s linear infinite;
+        opacity: 0.7;
+        font-size: 20px;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0) scale(1); opacity: 0.8; }
+        100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1 id="question">Hi Sandhya 🌸 Ready for a small surprise?</h1>
+    <p id="subtext"></p>
+    <div id="buttons">
+        <button class="yes" onclick="nextQuestion()">Yes 💖</button>
+        <button class="no" onclick="moveNo()">No 🙈</button>
+    </div>
+</div>
+
+<script>
+
+const questions = [
+    {
+        text: "Sandhya... एउटा कुरा सोध्न मिल्छ? 🥺",
+        sub: "हास्नु हुँदैन है 😜"
+    },
+    {
+        text: "तिमीसँग कुरा गर्दा समय कति छिटो बित्छ...",
+        sub: "यो feeling मलाई धेरै मन पर्छ 💕"
+    },
+    {
+        text: "तिमी हाँस्दा मेरो दिन नै राम्रो हुन्छ 😊",
+        sub: "तिमी बिना अलि खाली खाली लाग्छ..."
+    },
+    {
+        text: "साच्चै भन्नु... तिमी पनि मलाई मन पराउँछौ? 💖",
+        sub: "सिधै answer दिनुपर्छ है 😌"
+    },
+    {
+        text: "Sandhya... तिमी मेरो Valentine बन्नेछौ? ❤️",
+        sub: "Please yes भन न 🥺💞"
+    }
+];
+
+let index = -1;
+
+function nextQuestion() {
+    index++;
+
+    if (index < questions.length) {
+        document.getElementById("question").innerText = questions[index].text;
+        document.getElementById("subtext").innerText = questions[index].sub;
+        createHearts();
+    } else {
+        document.getElementById("question").innerHTML = "Yayyy 💖<br>तिमीले मेरो दिन नै बनायौ 💖<br>म सधैं तिमीलाई खुशी राख्ने वाचा गर्छु ❤️";
+        document.getElementById("subtext").innerText = "";
+        document.getElementById("buttons").style.display = "none";
+        setInterval(createHearts, 400);
+    }
+}
+
+function moveNo() {
+    const btn = document.querySelector('.no');
+    btn.style.position = 'absolute';
+    btn.style.left = Math.random() * 80 + '%';
+    btn.style.top = Math.random() * 80 + '%';
+}
+
+function createHearts() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+</script>
+
+</body>
+</html>
